@@ -1,0 +1,27 @@
+{
+  "name": "@beansmile/testmate-mcp",
+  "version": "1.11.0",
+  "description": "TestMate MCP 服务器 — 让 Claude Code / Cursor / Codex 直接处理 TestMate 用户反馈（基于 @makethisbetter/mcp）",
+  "bin": {
+    "testmate-mcp": "bin/testmate-mcp.js"
+  },
+  "files": [
+    "bin/",
+    "lib/",
+    "README.md",
+    "LICENSE"
+  ],
+  "dependencies": {
+    "@makethisbetter/mcp": "1.11.0"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "license": "MIT",
+  "homepage": "https://testmate.beansmile.ai",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/beansmile/testmate-mcp.git"
+  },
+  "keywords": ["testmate", "mcp", "feedback", "claude-code", "cursor", "beansmile"]
+}
