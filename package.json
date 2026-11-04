@@ -11,8 +11,13 @@
     "README.md",
     "LICENSE"
   ],
+  "scripts": {
+    "test": "node --test test/*.test.mjs"
+  },
   "dependencies": {
-    "@makethisbetter/mcp": "1.11.0"
+    "@makethisbetter/mcp": "1.11.0",
+    "@modelcontextprotocol/sdk": "^1.29.0",
+    "zod": "^3.25.76"
   },
   "engines": {
     "node": ">=20"

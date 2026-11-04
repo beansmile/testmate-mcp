@@ -2,7 +2,8 @@
 "use strict";
 // TestMate MCP server: points @makethisbetter/mcp at ~/.testmate/config.json
 // (unless MAKETHISBETTER_CONFIG is already set) and runs it in-process over
-// stdio. Run `testmate login --token <token>` first to create the config.
+// stdio, with TestMate's QA verification tools added (lib/server.mjs).
+// Run `testmate login --token <token>` first to create the config.
 const path = require("path");
 const { pathToFileURL } = require("url");
 const fs = require("fs");
@@ -18,10 +19,12 @@ if (!fs.existsSync(configPath)) {
   );
 }
 
-const pkgDir = path.dirname(require.resolve("@makethisbetter/mcp/package.json"));
-const entry = path.join(pkgDir, require("@makethisbetter/mcp/package.json").bin["makethisbetter-mcp"]);
+// lib/server.mjs registers the upstream tools plus TestMate's verify/reject.
+const entry = path.join(__dirname, "..", "lib", "server.mjs");
 
-import(pathToFileURL(entry).href).catch((error) => {
-  process.stderr.write((error && error.message ? error.message : String(error)) + "\n");
-  process.exit(1);
-});
+import(pathToFileURL(entry).href)
+  .then((server) => server.runServer())
+  .catch((error) => {
+    process.stderr.write((error && error.message ? error.message : String(error)) + "\n");
+    process.exit(1);
+  });
